@@ -34,18 +34,20 @@ class PolicyValueNetwork(nn.Module):
         
 
         self.feature_Net = nn.Sequential(
-            nn.Conv2d(1,32,2,1),
+            nn.Conv2d(1,32,3,1,padding=1),
             nn.LeakyReLU(),
-            nn.Conv2d(32,32,2,1),
+            nn.BatchNorm2d(32),
+            nn.Conv2d(32,32,3,1,padding=1),
             nn.LeakyReLU(),
-            nn.Conv2d(32,32,2,1),
+            nn.Conv2d(32,32,3,1,padding=1),
             nn.LeakyReLU(),
-            nn.Conv2d(32,32,2,1),
+            nn.Conv2d(32,32,3,1,padding=1),
             nn.LeakyReLU(),
-            nn.Conv2d(32,32,2,1),
+            nn.Conv2d(32,32,3,1,padding=1),
             nn.LeakyReLU(),
+            nn.BatchNorm2d(32),
             nn.Flatten(),
-            nn.Linear(64, hidden_size),
+            nn.Linear(1344, hidden_size),
             nn.LeakyReLU()).float()
 
         self.policy = nn.Sequential(
